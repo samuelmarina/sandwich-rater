@@ -3,15 +3,21 @@ import { StyleSheet, View } from 'react-native';
 import { Camera } from 'expo-camera';
 import CameraButton from './CameraButton';
 
-function AppCamera(props) {
+function AppCamera({
+    onPress,
+    setCamera
+}) {
     const type = Camera.Constants.Type.back;
 
     return (
         <Camera 
             style={styles.camera}
             type={type}
+            ref={ref => setCamera(ref)}
         >
-            <CameraButton />
+            <CameraButton 
+                onPress={onPress}
+            />
         </Camera>
     );
 }
