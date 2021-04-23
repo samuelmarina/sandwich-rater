@@ -1,5 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+
+import Button from "../../components/Button/Button";
 import Lottie from '../../components/Lottie/Lottie';
 import Title from '../../components/Title/Title';
 
@@ -12,20 +14,38 @@ function HomeScreen(props) {
                 source={require("../../assets/animations/Toaster/toaster.json")}
                 style={styles.toaster}
             />
-            <Title style={[styles.text, styles.shadow]}>
+            <Title style={[styles.text, styles.textShadow]}>
                 Sandwich Rater
             </Title>
+            <Button 
+                style={[styles.button, styles.shadow]}
+            >
+                Start
+            </Button>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
+    button: {
+        margin: 30
+    },
     container: {
         flex: 1,
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor: colors.background
     },
     shadow: {
+        shadowColor: colors.shadow,
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 3,
+    },
+    textShadow: {
         textShadowColor: colors.shadow,
         textShadowOffset: {
             width: -1,
