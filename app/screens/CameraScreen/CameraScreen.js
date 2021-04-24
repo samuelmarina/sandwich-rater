@@ -22,7 +22,7 @@ function CameraScreen({
                 onPress={takePicture}
             />
             <BackButton 
-                size={50}
+                size={35}
                 style={styles.back}
                 onPress={() => navigation.goBack()}
             />
