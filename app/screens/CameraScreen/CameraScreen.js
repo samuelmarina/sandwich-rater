@@ -13,7 +13,7 @@ function CameraScreen({
     const takePicture = async () => {
         if(!camera) return;
         const picture = await camera.takePictureAsync();
-        
+        navigation.navigate('Rating', {image: picture.uri});
     }
 
     return (
