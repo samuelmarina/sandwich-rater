@@ -1,21 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet } from 'react-native';
+import AppLoading from 'expo-app-loading';
+
+import AppNavigator from './app/navigation/Navigator/AppNavigator';
+import Context from "./app/config/context/context";
+import { useFonts, BlackHanSans_400Regular } from '@expo-google-fonts/black-han-sans';
+import { NavigationContainer } from '@react-navigation/native';
+
 
 export default function App() {
+  let [fontsLoaded, error] = useFonts({
+    BlackHanSans_400Regular,
+  });
+
+  const [hasPermission, setHasPermission] = useState(null);
+
+  if(!fontsLoaded){
+    return <AppLoading />
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Context.Provider value={{ hasPermission, setHasPermission }}>
+      <NavigationContainer>
+        <AppNavigator />
+      </NavigationContainer>
+    </Context.Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
