@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
         borderWidth: 10,
         borderRadius: 5,
         borderColor: colors.primary,
-        height: "50%",
-        width: "50%"
+        height: "65%",
+        width: "65%"
     },
     image: {
         flex: 1,
