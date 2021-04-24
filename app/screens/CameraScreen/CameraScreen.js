@@ -3,20 +3,27 @@ import { StyleSheet, View } from 'react-native';
 import BackButton from '../../components/BackButton/BackButton';
 
 import Camera from "../../components/Camera/Camera";
+import Loader from '../../components/Loader/Loader';
 
 function CameraScreen({
     navigation
 }) {
     const [camera, setCamera] = useState();
+    const [loading, setLoading] = useState(false);
 
     const takePicture = async () => {
         if(!camera) return;
+        setLoading(true);
         const picture = await camera.takePictureAsync();
+        setLoading(false);
         navigation.navigate('Rating', {image: picture.uri});
     }
 
     return (
         <View style={styles.container}>
+            <Loader 
+                visible={loading}
+            />
             <Camera 
                 setCamera={setCamera}
                 onPress={takePicture}
