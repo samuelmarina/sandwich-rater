@@ -5,7 +5,7 @@ import CameraButton from './CameraButton';
 
 function AppCamera({
     onPress,
-    setCamera
+    setCamera,
 }) {
     const type = Camera.Constants.Type.back;
 
