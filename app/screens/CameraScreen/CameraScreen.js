@@ -8,7 +8,6 @@ function CameraScreen({
     navigation
 }) {
     const [camera, setCamera] = useState();
-    const [loading, setLoading] = useState(false);
 
     const takePicture = async () => {
         if(!camera) return;
@@ -21,7 +20,6 @@ function CameraScreen({
             <Camera 
                 setCamera={setCamera}
                 onPress={takePicture}
-                loading={loading}
             />
             <BackButton 
                 size={50}
