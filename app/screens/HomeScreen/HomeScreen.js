@@ -1,13 +1,29 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useContext } from 'react';
+import { Alert, StyleSheet, Text, View } from 'react-native';
 
 import Button from "../../components/Button/Button";
+import Context from "../../config/context/context";
 import Lottie from '../../components/Lottie/Lottie';
 import Title from '../../components/Title/Title';
 
 import colors from "../../config/colors/colors";
+import { Camera } from 'expo-camera';
 
-function HomeScreen(props) {
+function HomeScreen({
+    navigation
+}) {
+    const { hasPermission, setHasPermission } = useContext(Context);
+
+    const checkPermissions = async () => {
+        const { status } = await Camera.requestPermissionsAsync();
+        setHasPermission(status === "granted");
+
+        if(status === null || status === false){
+            return Alert.alert("Damn boi", "Gotta give permissions to the camera to rate yo sandwich");
+        }
+        navigation.navigate('Camera');
+    }
+
     return (
         <View style={styles.container}>
             <Lottie 
@@ -19,6 +35,7 @@ function HomeScreen(props) {
             </Title>
             <Button 
                 style={[styles.button, styles.shadow]}
+                onPress={checkPermissions}
             >
                 Start
             </Button>
