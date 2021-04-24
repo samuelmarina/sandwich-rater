@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Alert, StyleSheet, StatusBar, View } from 'react-native';
+import { Alert, StyleSheet, StatusBar, View, Platform } from 'react-native';
 
 import Button from "../../components/Button/Button";
 import Context from "../../config/context/context";
@@ -27,7 +27,7 @@ function HomeScreen({
     return (
         <View style={styles.container}>
             <StatusBar 
-                barStyle='dark-content'
+                barStyle={Platform.OS === 'android' ? 'light-content' : 'dark-content'}
             />
             <Lottie 
                 source={require("../../assets/animations/Toaster/toaster.json")}

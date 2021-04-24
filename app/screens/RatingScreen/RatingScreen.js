@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, StatusBar } from 'react-native';
+import { StyleSheet, View, StatusBar, Platform } from 'react-native';
+import { StackActions } from '@react-navigation/native'
 
 import BackButton from '../../components/BackButton/BackButton';
 import ImageFrame from '../../components/ImageFrame/ImageFrame';
@@ -65,7 +66,7 @@ function RatingScreen({
     return (
         <View style={styles.container}>
             <StatusBar 
-                barStyle='dark-content'
+                barStyle={Platform.OS === 'android' ? 'light-content' : 'dark-content'}
             />
             <ImageFrame 
                 source={image}
@@ -80,7 +81,10 @@ function RatingScreen({
                 style={styles.back}
                 color="#fea82f"
                 size={35}
-                onPress={() => navigation.goBack()}
+                onPress={() => {
+                    const popAction = StackActions.pop(2);
+                    navigation.dispatch(popAction);
+                }}
             />
         </View>
     );
