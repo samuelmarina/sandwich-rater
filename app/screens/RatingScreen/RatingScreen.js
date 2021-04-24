@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
 
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, View, StatusBar } from 'react-native';
+
+import BackButton from '../../components/BackButton/BackButton';
 import ImageFrame from '../../components/ImageFrame/ImageFrame';
 import Title from '../../components/Title/Title';
 
@@ -62,6 +64,9 @@ function RatingScreen({
 
     return (
         <View style={styles.container}>
+            <StatusBar 
+                barStyle='dark-content'
+            />
             <ImageFrame 
                 source={image}
             />
@@ -71,6 +76,12 @@ function RatingScreen({
             <Title style={styles.text}>
                 Yo sandwich is {sentence}
             </Title>
+            <BackButton 
+                style={styles.back}
+                color="#fea82f"
+                size={35}
+                onPress={() => navigation.goBack()}
+            />
         </View>
     );
 }
@@ -101,6 +112,12 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
         fontSize: 20,
         textAlign: 'center'
+    },
+    back: {
+        position: 'absolute',
+        backgroundColor: 'transparent',
+        left: 10,
+        top: 50,
     }
 })
 
